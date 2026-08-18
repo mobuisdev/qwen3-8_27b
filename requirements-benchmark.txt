@@ -1,0 +1,6 @@
+# Backend-neutral benchmark, quality, and model-download clients.
+huggingface-hub==1.27.0
+transformers==5.15.0
+requests==2.34.2
+psutil==7.2.2
+nvidia-ml-py==13.610.43

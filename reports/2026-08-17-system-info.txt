@@ -1,0 +1,28 @@
+Qwen3.8-27B RTX 5090 benchmark system snapshot
+captured_at=2026-08-17T16:23:22Z
+privacy=curated public snapshot; unique identifiers, local paths, hostname, and process list omitted
+
+[platform]
+OS=Nobara Linux 44 (KDE Plasma)
+kernel=7.1.4-200.nobara.fc44.x86_64
+virtualization=none (native Linux)
+
+[processor and memory]
+CPU=AMD Ryzen 9 9950X3D 16-Core Processor
+cores=16 physical / 32 logical
+L3_cache=128 MiB
+RAM_bytes=67023790080
+swap=zram, 8 GiB
+
+[accelerator]
+GPU=NVIDIA GeForce RTX 5090
+VRAM_reported=32607 MiB
+driver=595.91.07
+CUDA_driver=13.2
+CUDA_toolkit=13.2
+nvcc=13.2.51
+power_limit=600 W
+PCIe_capability=Gen5 x16
+
+Regenerate a public-safe snapshot with:
+python3 scripts/collect_system_info.py --output reports/<session>-system-info.txt

@@ -1,0 +1,64 @@
+{
+  "date": "2026-08-18",
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 5090 32 GiB",
+    "host_ram_gib": 64,
+    "cpu": "AMD Ryzen 9 9950X3D"
+  },
+  "ninfer": {
+    "source_commit": "b2b96bae4dd88f95b9ea8126d68fae3b88caa374",
+    "artifact": "neroued/Qwen3.8-27B-nvfp4-NInfer/qwen3_8_27b_nvfp4.ninfer",
+    "artifact_revision": "d6d0b3b61a38262e57217e64e7f44cf4ce98bda1",
+    "artifact_sha256": "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32",
+    "configuration": "NVFP4, INT8 group-64 KV, MTP3, optimized LM-head draft, greedy, concurrency 1",
+    "kv_capacity_tokens": 200000,
+    "code_generation": [
+      {"prompt_tokens": 997, "samples": 3, "median_decode_tps": 198.01, "median_ttft_s": 0.128},
+      {"prompt_tokens": 31418, "samples": 3, "median_decode_tps": 191.76, "median_ttft_s": 4.529},
+      {"prompt_tokens": 95849, "samples": 3, "median_decode_tps": 162.88, "median_ttft_s": 21.991},
+      {"prompt_tokens": 182099, "samples": 3, "median_decode_tps": 154.55, "median_ttft_s": 62.755},
+      {"prompt_tokens": 190003, "samples": 3, "median_decode_tps": 155.42, "range_decode_tps": [152.53, 156.52], "median_ttft_s": 67.638}
+    ],
+    "prefix_reuse": {
+      "prompt_tokens": 182135,
+      "cache_hit_tokens": 182095,
+      "computed_prefill_tokens": 40,
+      "cold_ttft_s": 60.321,
+      "cached_ttft_s": 0.397,
+      "cached_decode_tps": 129.44
+    },
+    "quality": {
+      "logic": true,
+      "coding": true,
+      "exact_json": true,
+      "tool_call": true,
+      "needle_prompt_tokens": 176271,
+      "needle_positions_passed": [0.1, 0.5, 0.9]
+    },
+    "peak_190k": {
+      "vram_gib": 29.05,
+      "host_ram_used_gib": 9.54,
+      "minimum_host_ram_available_gib": 52.88,
+      "gpu_power_w": 607.61,
+      "gpu_temperature_c": 71
+    }
+  },
+  "vllm_0_27_1": {
+    "unsloth_mtp3": {
+      "kv_capacity_tokens": 121600,
+      "median_decode_tps": {"1024": 106.93, "32768": 101.25, "100000": 97.82, "115000": 91.12}
+    },
+    "gittensor_modelopt_no_mtp": {
+      "kv_capacity_tokens": 246176,
+      "median_decode_tps": {"1024": 53.68, "32768": 51.77, "100000": 48.28, "190000": 44.40}
+    }
+  },
+  "raw_provenance": [
+    "ninfer_b2b96ba_exact190k_mtp3_int8kv_code_20260818T125352_23df8e29.json",
+    "ninfer_b2b96ba_nvfp4_mtp3_int8kv_code_20260818T123814_ded7ce07.json",
+    "ninfer_b2b96ba_prefix_reuse_chat_history_190k_20260818T124654_6ce9cc80.json",
+    "vllm_quality_20260818T124824_33f8ab9b.json",
+    "vllm_0.27.1_unsloth_mtp3_fp8kv_20260818T114335_e59bad88.json",
+    "vllm_0.27.1_gittensor_nospec_fp8kv_20260818T120349_c5dca93d.json"
+  ]
+}

@@ -1,0 +1,62 @@
+# Recreated Python environments and package caches.
+.venv*/
+.uv-cache*/
+.ccache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+.direnv/
+.envrc
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+core
+core.*
+
+# Downloaded models and framework/kernel caches.
+hf-home/
+ninfer-models/
+sglang-cache/
+vllm-cache/
+flashinfer-workspace/
+cuda-header-shim/
+vendor/
+*.ninfer
+models/**/*.safetensors
+models/**/*.gguf
+models/**/*.bin
+models/**/*.pt
+models/**/*.pth
+models/**/*.onnx
+
+# Machine-local manifests and generated benchmark evidence. Compact aggregate
+# results and the README files remain tracked outside these patterns.
+models/downloaded_snapshots.json
+logs/*
+!logs/README.md
+monitoring/*
+!monitoring/README.md
+raw_results/*
+!raw_results/README.md
+
+# Editor/OS leftovers.
+*.swp
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.agents/
+.codex/
