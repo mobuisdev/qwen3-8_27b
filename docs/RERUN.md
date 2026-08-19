@@ -12,13 +12,16 @@ the 36 GiB/40 GiB/no-swap cgroup. Run only one backend at a time.
 | Label | Engine and revision | Checkpoint and revision | Important settings |
 |---|---|---|---|
 | NInfer long | NInfer `b2b96bae4dd88f95b9ea8126d68fae3b88caa374` | NInfer NVFP4 `d6d0b3b61a38262e57217e64e7f44cf4ce98bda1` | INT8 KV, MTP3, LM-head draft, 200k, CUDA graphs |
-| vLLM fast | vLLM 0.27.1 | Unsloth NVFP4 `7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108` | FP8 KV, MTP3, automatic maximum context |
-| vLLM long | vLLM 0.27.1 | Gittensor ModelOpt `ec8ad26b9e3b33c7d05c0e5743b60f37f5139005` | FP8 KV, no MTP, automatic maximum context |
+| vLLM fast | vLLM 0.27.1 | Unsloth NVFP4 `7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108` | FP8 KV, MTP3, 0.90 GPU utilization, automatic maximum context |
+| vLLM long | vLLM 0.27.1 | Gittensor ModelOpt `ec8ad26b9e3b33c7d05c0e5743b60f37f5139005` | FP8 KV, no MTP, 0.90 GPU utilization, automatic maximum context |
 | SGLang long | SGLang `374a6b24f2f2b52fc131417d8d0e4e78900f7a5d` + tracked patch | RadixArk ModelOpt `554ebba9b5f1b79dc11246341960360e6ef05ef4` | FP8 KV, no MTP, 200k, batch-1 decode graph |
 | SGLang fast | Same SGLang | Same RadixArk | FP8 KV, EAGLE MTP3/4 draft tokens, 32k logical context |
 
 Keep these revisions fixed for the publication rerun. Updating packages or
 checkpoints would create a different experiment and requires a fresh audit.
+Keep vLLM GPU utilization at 0.90: this leaves room for FlashInfer's lazy
+394 MiB workspace and first-use kernels. At 0.93, automatic KV sizing can
+consume that reserve and fail the first generation request with CUDA OOM.
 
 ## 1. Reboot and establish the session
 
@@ -100,6 +103,7 @@ next backend.
 Start in terminal A:
 
 ```bash
+QWEN_VLLM_GPU_MEMORY_UTILIZATION=0.90 \
 ./scripts/launch/launch_vllm_5090.sh
 ```
 
@@ -139,6 +143,7 @@ Start in terminal A:
 QWEN_VLLM_MODEL_PATH="$PWD/hf-home/hub/models--gittensor-model-hub--Qwen3.8-27B-NVFP4-RTX5090/snapshots/ec8ad26b9e3b33c7d05c0e5743b60f37f5139005" \
 QWEN_VLLM_SERVED_MODEL_NAME=qwen38-vllm-gittensor \
 QWEN_VLLM_MTP_TOKENS=0 \
+QWEN_VLLM_GPU_MEMORY_UTILIZATION=0.90 \
 ./scripts/launch/launch_vllm_5090.sh
 ```
 

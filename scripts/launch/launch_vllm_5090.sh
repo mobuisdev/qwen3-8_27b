@@ -8,7 +8,9 @@ MODEL_DEFAULT="$ROOT/hf-home/hub/models--unsloth--Qwen3.8-27B-NVFP4/snapshots/7d
 
 MODEL_PATH="${QWEN_VLLM_MODEL_PATH:-$MODEL_DEFAULT}"
 PORT="${QWEN_VLLM_PORT:-31000}"
-GPU_MEMORY_UTILIZATION="${QWEN_VLLM_GPU_MEMORY_UTILIZATION:-0.93}"
+# Reserve room for FlashInfer's lazy 394 MiB workspace and first-use kernels.
+# At 0.93, automatic KV sizing can leave too little free VRAM for generation.
+GPU_MEMORY_UTILIZATION="${QWEN_VLLM_GPU_MEMORY_UTILIZATION:-0.90}"
 MAX_MODEL_LEN="${QWEN_VLLM_MAX_MODEL_LEN:--1}"
 MTP_TOKENS="${QWEN_VLLM_MTP_TOKENS:-3}"
 SERVED_MODEL_NAME="${QWEN_VLLM_SERVED_MODEL_NAME:-qwen38-vllm-unsloth}"

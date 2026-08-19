@@ -95,6 +95,16 @@ def main() -> int:
     for path, data in matched:
         if data.get("error"):
             failures.append(f"{path.name}: {public_error_summary(data['error'])}")
+        incomplete = [
+            request
+            for request in data.get("requests") or []
+            if request.get("decode_tokens_per_second") is None
+        ]
+        if incomplete:
+            failures.append(
+                f"{path.name}: IncompleteMeasurement: decode throughput unavailable "
+                f"for {len(incomplete)} request(s)"
+            )
         grouped: dict[int, list[dict[str, Any]]] = defaultdict(list)
         for request in data.get("requests") or []:
             prompt = request.get("actual_prompt_tokens")

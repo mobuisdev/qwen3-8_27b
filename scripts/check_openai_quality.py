@@ -80,7 +80,8 @@ def main() -> int:
         )
         message = result["response"]["choices"][0]["message"]
         combined = " ".join(
-            str(message.get(key) or "") for key in ("reasoning_content", "content")
+            str(message.get(key) or "")
+            for key in ("reasoning", "reasoning_content", "content")
         )
         result.update(
             {

@@ -250,7 +250,11 @@ def stream_completion(
             usage = event["usage"]
         choices = event.get("choices") or []
         if api_style == "chat":
-            text = (choices[0].get("delta") or {}).get("content", "") if choices else ""
+            delta = choices[0].get("delta") or {} if choices else {}
+            text = "".join(
+                str(delta.get(key) or "")
+                for key in ("reasoning", "reasoning_content", "content")
+            )
         else:
             text = choices[0].get("text", "") if choices else ""
         if text:
