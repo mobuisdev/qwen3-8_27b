@@ -181,15 +181,15 @@ the desktop. No tested production profile uses CPU weight or KV offload.
 For a clean machine, follow [docs/INSTALL.md](docs/INSTALL.md). For a fresh
 publication run, use the fixed matrix and exact workflow in
 [docs/RERUN.md](docs/RERUN.md). The compact follow-up data is in
-[backend_results_2026-08-18.json](backend_results_2026-08-18.json).
+[results-summary.json](reports/archive/2026-08-18-backend-follow-up/results-summary.json).
 The normalized SGLang baseline data is in
-[benchmark_results.json](benchmark_results.json) and
-[benchmark_results.csv](benchmark_results.csv).
+[results.json](reports/archive/2026-08-17-sglang/results.json) and
+[results.csv](reports/archive/2026-08-17-sglang/results.csv).
 
 Detailed dated reports:
 
-- [2026-08-17 SGLang benchmark](reports/2026-08-17-sglang-benchmark.md)
-- [2026-08-18 vLLM/NInfer follow-up](reports/2026-08-18-backend-follow-up.md)
+- [2026-08-17 SGLang benchmark](reports/archive/2026-08-17-sglang/report.md)
+- [2026-08-18 vLLM/NInfer follow-up](reports/archive/2026-08-18-backend-follow-up/report.md)
 
 Primary external references:
 

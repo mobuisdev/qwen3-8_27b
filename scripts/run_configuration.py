@@ -33,7 +33,8 @@ from transformers import AutoTokenizer
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESULT_FIELDS = (ROOT / "benchmark_results.csv").read_text().splitlines()[0].split(",")
+LEGACY_RESULTS_DIR = ROOT / "reports" / "archive" / "2026-08-17-sglang"
+RESULT_FIELDS = (LEGACY_RESULTS_DIR / "results.csv").read_text().splitlines()[0].split(",")
 REPOSITORIES = json.loads((ROOT / "models" / "repositories.json").read_text())
 
 
@@ -503,12 +504,12 @@ def wait_ready(base_url: str, process: subprocess.Popen, timeout: int) -> dict[s
 
 
 def append_results(rows: list[dict[str, Any]]) -> None:
-    csv_path = ROOT / "benchmark_results.csv"
+    csv_path = LEGACY_RESULTS_DIR / "results.csv"
     with csv_path.open("a", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=RESULT_FIELDS, extrasaction="ignore")
         for row in rows:
             writer.writerow({key: row.get(key, "") for key in RESULT_FIELDS})
-    json_path = ROOT / "benchmark_results.json"
+    json_path = LEGACY_RESULTS_DIR / "results.json"
     existing = json.loads(json_path.read_text())
     existing.extend(rows)
     json_path.write_text(json.dumps(existing, indent=2, sort_keys=True) + "\n")

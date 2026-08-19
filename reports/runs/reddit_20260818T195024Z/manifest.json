@@ -1,0 +1,72 @@
+{
+  "artifacts": [
+    "manifest.json",
+    "ninfer-commit.txt",
+    "results.csv",
+    "results.md",
+    "sglang-environment.txt",
+    "system-info.txt",
+    "vllm-freeze.txt"
+  ],
+  "bench_session": "reddit_20260818T195024Z",
+  "expected_model_hashes": {
+    "ninfer_nvfp4": "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32"
+  },
+  "generated_at": "2026-08-19T11:46:14.412409+00:00",
+  "measurement_failures": [
+    "reddit_20260818T195024Z_vllm_unsloth_mtp3_20260818T221918_706f4baf.json: IncompleteMeasurement: decode throughput unavailable for 1 request(s)"
+  ],
+  "model_revisions": {
+    "radixark": {
+      "repo_id": "RadixArk/Qwen3.8-27B-NVFP4",
+      "revision": "554ebba9b5f1b79dc11246341960360e6ef05ef4"
+    },
+    "unsloth": {
+      "repo_id": "unsloth/Qwen3.8-27B-NVFP4",
+      "revision": "7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108"
+    }
+  },
+  "quality": [
+    {
+      "configuration": "reddit_20260818T195024Z_ninfer_quality",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "configuration": "reddit_20260818T195024Z_sglang_radixark_quality",
+      "passed": 5,
+      "total": 7
+    },
+    {
+      "configuration": "reddit_20260818T195024Z_vllm_gittensor_quality",
+      "passed": 5,
+      "total": 7
+    },
+    {
+      "configuration": "reddit_20260818T195024Z_vllm_unsloth_quality",
+      "passed": 5,
+      "total": 7
+    }
+  ],
+  "raw_sources": [
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_ninfer_20260818T215207_9221d68e.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_ninfer_exact190k_20260818T215751_7850fa45.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_ninfer_prefix_20260818T220144_2b97d0c1.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_ninfer_quality_20260818T220303_6bd16581.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_sglang_radixark_mtp_20260818T230945_2384eeb8.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_sglang_radixark_no_mtp_20260818T225319_9c28519b.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_sglang_radixark_quality_20260818T230437_21a8543f.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_vllm_gittensor_no_mtp_20260818T223217_1d26df94.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_vllm_gittensor_quality_20260818T223948_67586967.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_vllm_unsloth_mtp3_20260818T221918_706f4baf.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_vllm_unsloth_mtp3_20260818T222240_1f6bdfba.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_vllm_unsloth_prefix_20260818T222732_18e463b2.json",
+    "raw_results/reddit_20260818T195024Z/reddit_20260818T195024Z_vllm_unsloth_quality_20260818T222820_59f3f163.json"
+  ],
+  "result_rows": 20,
+  "schema_version": 1,
+  "source_revisions": {
+    "ninfer": "b2b96bae4dd88f95b9ea8126d68fae3b88caa374"
+  },
+  "status": "failed"
+}

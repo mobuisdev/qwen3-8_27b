@@ -18,6 +18,8 @@ import pynvml
 import requests
 from transformers import AutoTokenizer
 
+from benchmark_paths import session_directory
+
 
 ROOT = Path(__file__).resolve().parents[1]
 MONITOR_FIELDS = (
@@ -327,9 +329,11 @@ def main() -> int:
         f"{args.label}_{datetime.now().strftime('%Y%m%dT%H%M%S')}_"
         f"{uuid.uuid4().hex[:8]}"
     )
-    raw_path = ROOT / "raw_results" / f"{run_id}.json"
-    csv_path = ROOT / "raw_results" / f"{run_id}.csv"
-    monitor_path = ROOT / "monitoring" / f"{run_id}.csv"
+    raw_dir = session_directory(ROOT, "raw_results", run_id)
+    monitor_dir = session_directory(ROOT, "monitoring", run_id)
+    raw_path = raw_dir / f"{run_id}.json"
+    csv_path = raw_dir / f"{run_id}.csv"
+    monitor_path = monitor_dir / f"{run_id}.csv"
     tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=False)
     raw: dict[str, Any] = {
         "run_id": run_id,

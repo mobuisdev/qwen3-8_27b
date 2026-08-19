@@ -1,0 +1,6 @@
+configuration,model,actual_prompt_tokens,samples,median_output_tokens,median_ttft_s,median_decode_tps,min_decode_tps,max_decode_tps,peak_vram_gib,minimum_host_available_gib
+reddit_20260819T092710Z_ninfer,qwen38-ninfer-nvfp4,997,3,768,0.129,198.56,184.97,199.36,29.14,54.37
+reddit_20260819T092710Z_ninfer,qwen38-ninfer-nvfp4,31418,3,768,4.513,185.67,175.43,189.72,29.14,54.32
+reddit_20260819T092710Z_ninfer,qwen38-ninfer-nvfp4,95849,3,768,21.953,165.96,150.76,167.36,29.14,54.25
+reddit_20260819T092710Z_ninfer,qwen38-ninfer-nvfp4,182099,3,768,62.633,151.8,148.08,155.09,29.15,54.08
+reddit_20260819T092710Z_ninfer_exact190k,qwen38-ninfer-nvfp4,190003,3,768,67.698,153.94,146.38,155.36,28.88,54.05

@@ -1,0 +1,69 @@
+{
+  "artifacts": [
+    "manifest.json",
+    "ninfer-commit.txt",
+    "results.csv",
+    "results.md",
+    "sglang-environment.txt",
+    "system-info.txt",
+    "vllm-freeze.txt"
+  ],
+  "bench_session": "reddit_20260819T095723Z",
+  "expected_model_hashes": {
+    "ninfer_nvfp4": "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32"
+  },
+  "generated_at": "2026-08-19T11:46:17.874286+00:00",
+  "measurement_failures": [],
+  "model_revisions": {
+    "radixark": {
+      "repo_id": "RadixArk/Qwen3.8-27B-NVFP4",
+      "revision": "554ebba9b5f1b79dc11246341960360e6ef05ef4"
+    },
+    "unsloth": {
+      "repo_id": "unsloth/Qwen3.8-27B-NVFP4",
+      "revision": "7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108"
+    }
+  },
+  "quality": [
+    {
+      "configuration": "reddit_20260819T095723Z_ninfer_quality",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "configuration": "reddit_20260819T095723Z_sglang_radixark_quality",
+      "passed": 6,
+      "total": 7
+    },
+    {
+      "configuration": "reddit_20260819T095723Z_vllm_gittensor_quality",
+      "passed": 6,
+      "total": 7
+    },
+    {
+      "configuration": "reddit_20260819T095723Z_vllm_unsloth_quality",
+      "passed": 5,
+      "total": 7
+    }
+  ],
+  "raw_sources": [
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_ninfer_20260819T115834_a40f3ede.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_ninfer_exact190k_20260819T120416_5270cc0c.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_ninfer_prefix_20260819T120808_7dc2c4fb.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_ninfer_quality_20260819T120927_3522f888.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_sglang_radixark_mtp_20260819T125713_45a78cde.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_sglang_radixark_no_mtp_20260819T124036_9e3dc740.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_sglang_radixark_quality_20260819T125226_4096a456.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_vllm_gittensor_no_mtp_20260819T122411_e7a02f44.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_vllm_gittensor_quality_20260819T123216_78f28a7a.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_vllm_unsloth_mtp3_20260819T121419_26d7a0b9.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_vllm_unsloth_prefix_20260819T121915_04b0b694.json",
+    "raw_results/reddit_20260819T095723Z/reddit_20260819T095723Z_vllm_unsloth_quality_20260819T121959_a49ff92f.json"
+  ],
+  "result_rows": 20,
+  "schema_version": 1,
+  "source_revisions": {
+    "ninfer": "b2b96bae4dd88f95b9ea8126d68fae3b88caa374"
+  },
+  "status": "complete_with_quality_failures"
+}

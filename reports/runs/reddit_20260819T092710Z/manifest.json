@@ -1,0 +1,48 @@
+{
+  "artifacts": [
+    "manifest.json",
+    "ninfer-commit.txt",
+    "results.csv",
+    "results.md",
+    "sglang-environment.txt",
+    "system-info.txt",
+    "vllm-freeze.txt"
+  ],
+  "bench_session": "reddit_20260819T092710Z",
+  "expected_model_hashes": {
+    "ninfer_nvfp4": "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32"
+  },
+  "generated_at": "2026-08-19T11:46:14.412732+00:00",
+  "measurement_failures": [],
+  "model_revisions": {
+    "radixark": {
+      "repo_id": "RadixArk/Qwen3.8-27B-NVFP4",
+      "revision": "554ebba9b5f1b79dc11246341960360e6ef05ef4"
+    },
+    "unsloth": {
+      "repo_id": "unsloth/Qwen3.8-27B-NVFP4",
+      "revision": "7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108"
+    }
+  },
+  "quality": [
+    {
+      "configuration": "reddit_20260819T092710Z_ninfer_quality",
+      "passed": 7,
+      "total": 7
+    }
+  ],
+  "raw_sources": [
+    "raw_results/reddit_20260819T092710Z/reddit_20260819T092710Z_ninfer_20260819T112835_aa02bfed.json",
+    "raw_results/reddit_20260819T092710Z/reddit_20260819T092710Z_ninfer_exact190k_20260819T113417_576acea5.json",
+    "raw_results/reddit_20260819T092710Z/reddit_20260819T092710Z_ninfer_prefix_20260819T113808_81569f74.json",
+    "raw_results/reddit_20260819T092710Z/reddit_20260819T092710Z_ninfer_quality_20260819T113926_f34ea7f6.json",
+    "raw_results/reddit_20260819T092710Z/reddit_20260819T092710Z_vllm_unsloth_mtp3_20260819T114500_0017d79f.json",
+    "raw_results/reddit_20260819T092710Z/reddit_20260819T092710Z_vllm_unsloth_mtp3_20260819T114718_d46beb1c.json"
+  ],
+  "result_rows": 5,
+  "schema_version": 1,
+  "source_revisions": {
+    "ninfer": "b2b96bae4dd88f95b9ea8126d68fae3b88caa374"
+  },
+  "status": "aborted"
+}

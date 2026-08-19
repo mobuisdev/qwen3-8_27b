@@ -29,6 +29,8 @@ Close other GPU-heavy applications after reboot. From the repository root:
 
 ```bash
 export BENCH_SESSION="reddit_$(date -u +%Y%m%dT%H%M%SZ)"
+export BENCH_REPORT_DIR="$PWD/reports/runs/$BENCH_SESSION"
+mkdir -p "$BENCH_REPORT_DIR"
 
 if [[ -x .venv-tools/bin/python ]]; then
   export BENCH_PY="$PWD/.venv-tools/bin/python"
@@ -48,17 +50,17 @@ Capture the publication environment without overwriting the dated baseline:
 
 ```bash
 python3 scripts/collect_system_info.py \
-  --output "reports/${BENCH_SESSION}-system-info.txt"
+  --output "$BENCH_REPORT_DIR/system-info.txt"
 
 .venv/bin/python scripts/collect_environment.py \
-  --output "reports/${BENCH_SESSION}-sglang-environment.txt"
+  --output "$BENCH_REPORT_DIR/sglang-environment.txt"
 
 UV_CACHE_DIR=.uv-cache uv pip freeze \
   --python .venv-vllm-0.27.1/bin/python \
-  > "reports/${BENCH_SESSION}-vllm-freeze.txt"
+  > "$BENCH_REPORT_DIR/vllm-freeze.txt"
 
 git -C vendor/ninfer rev-parse HEAD \
-  > "reports/${BENCH_SESSION}-ninfer-commit.txt"
+  > "$BENCH_REPORT_DIR/ninfer-commit.txt"
 ```
 
 Do not clear compiled kernel caches for this decode/long-context comparison.
@@ -225,12 +227,14 @@ run recorded an error, investigate before publishing.
 python3 scripts/summarize_results.py --prefix "$BENCH_SESSION"
 ```
 
-This writes `reports/<session>-results.csv` and
-`reports/<session>-results.md`, including medians, ranges, TTFT, VRAM, host
-headroom, quality pass counts, failures, and raw source filenames. Failure
-tracebacks stay in ignored raw results; the report includes only a redacted
-error type and message. Review model outputs manually before treating the smoke
-checks as quality evidence.
+This writes `reports/runs/<session>/results.csv`, `results.md`, and
+`manifest.json`, including medians, ranges, TTFT, VRAM, host headroom, quality
+pass counts, failures, revisions, and raw source paths. It also updates the
+small `reports/LATEST` pointer. Benchmark clients store private traces under
+`raw_results/<session>/` and `monitoring/<session>/`. Failure tracebacks stay
+in ignored raw results; the report includes only a redacted error type and
+message. Review model outputs manually before treating the smoke checks as
+quality evidence.
 
 Commit the compact report, CSV, environment captures, configuration scripts,
 and updated canonical `REPORT.md`. Raw outputs and monitoring remain ignored;

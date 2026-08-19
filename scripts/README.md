@@ -28,8 +28,10 @@ After launching the recommended NInfer server, a small repeatable check is:
 
 Both clients default to the NInfer endpoint, model ID, and the tracked
 `models/qwen_base` tokenizer metadata. Pass `--help` for backend overrides.
-Generated output goes to the ignored `raw_results/` and `monitoring/`
-directories.
+Generated output goes to ignored `raw_results/<session>/` and
+`monitoring/<session>/` directories. Set `BENCH_SESSION` to group multiple
+profile invocations into one publication run; otherwise each invocation uses
+its unique run ID as the directory name.
 
 Supporting scripts capture the environment, audit/download pinned metadata,
 and reproduce the detailed SGLang measurements.

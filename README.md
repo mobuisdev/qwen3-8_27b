@@ -49,13 +49,14 @@ Markdown/CSV tables from only the new session.
 | `docs/` | Installation, methodology, rerun workflow, and compatibility notes |
 | `scripts/setup/` | Pinned backend provisioning |
 | `scripts/launch/` | RAM-guarded measured-profile launchers |
-| `backend_results_2026-08-18.json` | Compact machine-readable follow-up results |
-| `benchmark_results.{json,csv}` | Normalized SGLang baseline results |
-| `reports/` | Dated detailed reports supporting the aggregate results |
+| `reports/archive/2026-08-18-backend-follow-up/results-summary.json` | Compact machine-readable follow-up results |
+| `reports/archive/2026-08-17-sglang/results.{json,csv}` | Normalized SGLang baseline results |
+| `reports/archive/` | Fixed historical studies and their supporting data |
+| `reports/runs/<session>/` | One self-contained publication directory per rerun |
 | `scripts/*.py` | Benchmark, quality, preflight, capture, and metadata tools |
 | `requirements-benchmark.txt` | Pinned direct dependencies for the neutral clients |
 | `models/` | Small pinned model metadata and checkpoint audit; no weights |
-| `reports/*-system-info.txt`, `reports/*-environment.txt` | Public-safe dated hardware and software snapshots |
+| `reports/**/system-info.txt`, `reports/**/*environment.txt` | Public-safe dated hardware and software snapshots |
 
 The three `scripts/launch/launch_sglang_*_5090.sh` files reproduce the
 published SGLang profiles without including one-off exploratory command
@@ -118,8 +119,9 @@ The setup scripts pin source commits, model revisions, and the direct package
 versions that affected compatibility. They do not provide a hash-locked
 transitive dependency graph and they depend on live Git and package/model
 registries. They are therefore reconstruction recipes, not hermetic or
-byte-for-byte reproducible builds. The dated environment captures in
-`reports/` record the complete package set used for the published measurements.
+byte-for-byte reproducible builds. The dated environment captures under
+`reports/archive/` and `reports/runs/` record the complete package set used for
+the published measurements.
 
 ## License
 

@@ -61,8 +61,8 @@ RadixArk is the checkpoint recommended by the official Qwen3.8 SGLang recipe.
 Unsloth's own model card says its checkpoint does not work with released
 SGLang. Consequently all Unsloth results here are **experimental patched-runtime
 results**, not proof of official support. See
-[compatibility-notes.md](../docs/compatibility-notes.md) and
-[2026-08-17-sglang-environment.txt](2026-08-17-sglang-environment.txt) for
+[compatibility-notes.md](../../../docs/compatibility-notes.md) and
+[sglang-environment.txt](sglang-environment.txt) for
 sources and the complete package freeze.
 
 ## Machine and baseline
@@ -101,8 +101,8 @@ page cache, and monitoring only. No `llama.cpp` installation was changed.
 Both are mixed checkpoints, not uniformly W4A4. Startup logs verify the
 ModelOpt/compressed-tensors loaders, fused FP4 dense MLP path, actual FlashInfer
 attention, Triton GDN kernels, and actual KV dtype. Detailed tensor targets and
-hashes are in [model_comparison.md](../models/model_comparison.md) and
-[model_audit.json](../models/model_audit.json).
+hashes are in [model_comparison.md](../../../models/model_comparison.md) and
+[model_audit.json](../../../models/model_audit.json).
 
 ## Methodology
 
@@ -115,8 +115,8 @@ scheduling, and prefill. Decode throughput excludes the first output token.
 
 Monitoring sampled NVML and host memory every 0.5 seconds. Each measured result
 stores raw SGLang metadata, command, log, VRAM, power, temperature, host RAM,
-and swap I/O. `benchmark_results.csv` and `benchmark_results.json` contain the
-normalized rows; [METHODOLOGY.md](../docs/METHODOLOGY.md) describes prompt
+and swap I/O. `results.csv` and `results.json` contain the normalized rows;
+[METHODOLOGY.md](../../../docs/METHODOLOGY.md) describes prompt
 construction.
 
 ## Four primary configurations
@@ -386,17 +386,17 @@ existing `llama.cpp` workflow. No CPU/RAM-offload experiment was performed.
 
 ## Reproducibility index
 
-- [benchmark_results.csv](../benchmark_results.csv): normalized request rows
-- [benchmark_results.json](../benchmark_results.json): normalized rows with extra fields
-- [raw_results/](../raw_results/): locally generated server info, response metadata, and quality output
-- [logs/](../logs/): locally generated startup, kernel, warning, and failure logs
-- [monitoring/](../monitoring/): locally generated 0.5-second hardware/host traces
+- [results.csv](results.csv): normalized request rows
+- [results.json](results.json): normalized rows with extra fields
+- [raw_results/](../../../raw_results/): locally generated server info, response metadata, and quality output
+- [logs/](../../../logs/): locally generated startup, kernel, warning, and failure logs
+- [monitoring/](../../../monitoring/): locally generated 0.5-second hardware/host traces
 - `scripts/launch/launch_sglang_*_5090.sh`: publication SGLang profiles
-- [run_configuration.py](../scripts/run_configuration.py): benchmark orchestrator
-- [2026-08-17-system-info.txt](2026-08-17-system-info.txt): machine snapshot
-- [2026-08-17-sglang-environment.txt](2026-08-17-sglang-environment.txt): complete environment and package freeze
-- [compatibility-notes.md](../docs/compatibility-notes.md): source research and runtime qualifications
-- [model_comparison.md](../models/model_comparison.md): checkpoint audit
+- [run_configuration.py](../../../scripts/run_configuration.py): benchmark orchestrator
+- [system-info.txt](system-info.txt): machine snapshot
+- [sglang-environment.txt](sglang-environment.txt): complete environment and package freeze
+- [compatibility-notes.md](../../../docs/compatibility-notes.md): source research and runtime qualifications
+- [model_comparison.md](../../../models/model_comparison.md): checkpoint audit
 
 All reported successes and failures remain in the normalized JSON/CSV. Failed
 startup or harness-development rows are not silently discarded; the report

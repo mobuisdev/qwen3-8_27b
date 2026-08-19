@@ -1,0 +1,243 @@
+Qwen3.8-27B RTX 5090 benchmark system snapshot
+captured_at=2026-08-18T19:51:22.192404+00:00
+benchmark_root=<repository-root>
+HF_HOME=<benchmark-root>/hf-home
+privacy=hostnames, user paths, device UUIDs, and process lists omitted
+WSL2=no (native Linux)
+
+$ uname -srmo
+exit=0
+Linux 7.1.8-201.nobara.fc44.x86_64 x86_64 GNU/Linux
+
+$ cat /etc/os-release
+exit=0
+NAME="Nobara Linux"
+VERSION="44 (KDE Plasma Desktop Edition)"
+ID=nobara
+ID_LIKE="rhel centos fedora"
+VERSION_ID=44
+VERSION_CODENAME=""
+PLATFORM_ID="platform:f44"
+PRETTY_NAME="Nobara Linux 44 (KDE Plasma Desktop Edition)"
+ANSI_COLOR="0;38;2;60;110;180"
+LOGO=nobara-logo-icon
+CPE_NAME="cpe:/o:nobaraproject:nobara:44"
+DEFAULT_HOSTNAME="nobara"
+HOME_URL="https://nobaraproject.org/"
+DOCUMENTATION_URL="https://wiki.nobaraproject.org/"
+SUPPORT_URL="https://www.nobaraproject.org/"
+BUG_REPORT_URL="https://github.com/nobara-project/rpm-baseos"
+REDHAT_BUGZILLA_PRODUCT="Nobara"
+REDHAT_BUGZILLA_PRODUCT_VERSION=44
+REDHAT_SUPPORT_PRODUCT="Nobara"
+REDHAT_SUPPORT_PRODUCT_VERSION=44
+SUPPORT_END=2026-12-02
+VARIANT="KDE Plasma Desktop Edition"
+VARIANT_ID=kde
+
+$ systemd-detect-virt
+exit=1
+none
+
+$ lscpu
+exit=0
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           48 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  32
+On-line CPU(s) list:                     0-31
+Vendor ID:                               AuthenticAMD
+Model name:                              AMD Ryzen 9 9950X3D 16-Core Processor
+CPU family:                              26
+Model:                                   68
+Thread(s) per core:                      2
+Core(s) per socket:                      16
+Socket(s):                               1
+Stepping:                                0
+Frequency boost:                         enabled
+CPU(s) scaling MHz:                      59%
+CPU max MHz:                             5756.4521
+CPU min MHz:                             624.1940
+BogoMIPS:                                8599.99
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx_vnni avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid bus_lock_detect movdiri movdir64b overflow_recov succor smca fsrm avx512_vp2intersect flush_l1d amd_lbr_pmc_freeze
+Virtualization:                          AMD-V
+L1d cache:                               768 KiB (16 instances)
+L1i cache:                               512 KiB (16 instances)
+L2 cache:                                16 MiB (16 instances)
+L3 cache:                                128 MiB (2 instances)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-31
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Mitigation; IBPB on VMEXIT only
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP always-on; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Mitigation; IBPB on VMEXIT
+
+$ lsmem --summary=only
+exit=0
+Memory block size:                  2G
+Total online memory:               64G
+Total offline memory:               0B
+
+$ free -b
+exit=0
+               total        used        free      shared  buff/cache   available
+Mem:     67023761408  5101826048 15159709696    68128768 46580314112 61921935360
+Swap:     8589930496           0  8589930496
+
+$ swapon --show --bytes
+exit=0
+NAME       TYPE            SIZE USED PRIO
+/dev/zram0 partition 8589930496    0  100
+
+$ cat /proc/pressure/memory
+exit=0
+some avg10=0.00 avg60=0.00 avg300=0.00 total=2
+full avg10=0.00 avg60=0.00 avg300=0.00 total=2
+
+$ vmstat -s
+exit=0
+     65452892 K total memory
+      4982252 K used memory
+     17360956 K active memory
+     30049732 K inactive memory
+     14804404 K free memory
+         4240 K buffer memory
+     45484348 K swap cache
+      8388604 K total swap
+            0 K used swap
+      8388604 K free swap
+      2825275 non-nice user cpu ticks
+          109 nice user cpu ticks
+       464466 system cpu ticks
+     34214277 idle cpu ticks
+        25525 IO-wait cpu ticks
+        94191 IRQ cpu ticks
+        24846 softirq cpu ticks
+            0 stolen cpu ticks
+            0 non-nice guest cpu ticks
+            0 nice guest cpu ticks
+     36497306 K paged in
+      7720785 K paged out
+            0 pages swapped in
+            0 pages swapped out
+         1025 pages alloc in dma
+         1536 pages alloc in dma32
+            0 pages alloc in high
+            0 pages alloc in movable
+    263993274 pages alloc in normal
+    267748147 pages free
+    493408536 interrupts
+    794462301 CPU context switches
+   1787070881 boot time
+        30768 forks
+
+$ df -h --output=fstype,size,used,avail,pcent . /tmp
+exit=0
+Type   Size  Used Avail Use%
+btrfs  585G  502G   83G  86%
+tmpfs   32G  2.0M   32G   1%
+
+$ findmnt -T . -no FSTYPE,OPTIONS
+exit=0
+btrfs rw,relatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvolid=257,subvol=/@home
+
+$ python3 --version
+exit=0
+Python 3.14.6
+
+$ nvcc --version
+exit=0
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2026 NVIDIA Corporation
+Built on Mon_Mar_02_09:52:23_PM_PST_2026
+Cuda compilation tools, release 13.2, V13.2.51
+Build cuda_13.2.r13.2/compiler.37434383_0
+
+$ nvidia-smi --query-gpu=name,driver_version,memory.total,memory.used,memory.free,utilization.gpu,temperature.gpu,power.draw,power.limit,pstate,clocks.current.graphics,clocks.current.memory,pcie.link.gen.current,pcie.link.gen.max,pcie.link.width.current,pcie.link.width.max --format=csv
+exit=0
+name, driver_version, memory.total [MiB], memory.used [MiB], memory.free [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], power.limit [W], pstate, clocks.current.graphics [MHz], clocks.current.memory [MHz], pcie.link.gen.current, pcie.link.gen.max, pcie.link.width.current, pcie.link.width.max
+NVIDIA GeForce RTX 5090, 595.91.07, 32607 MiB, 1292 MiB, 30817 MiB, 13 %, 43, 43.39 W, 600.00 W, P8, 1252 MHz, 405 MHz, 1, 5, 8, 16
+
+$ nvidia-smi topo -m
+exit=0
+	[4mGPU0	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	0-31	0		N/A
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks
+
+$ lspci -vv -d 10de:
+exit=0
+01:00.0 VGA compatible controller: NVIDIA Corporation GB202 [GeForce RTX 5090] (rev a1) (prog-if 00 [VGA controller])
+	Subsystem: ASUSTeK Computer Inc. Device 89ee
+	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
+	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+	Latency: 0
+	Interrupts: pin B disabled, MSI(X) routed to IRQ 153-160
+	IOMMU group: 14
+	Region 0: Memory at d8000000 (32-bit, non-prefetchable) [size=64M]
+	Region 1: Memory at 90000000 (64-bit, prefetchable) [size=256M]
+	Region 3: Memory at a0000000 (64-bit, prefetchable) [size=32M]
+	Region 5: I/O ports at f000 [size=128]
+	Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
+	Capabilities: <access denied>
+	Kernel driver in use: nvidia
+	Kernel modules: nouveau, nvidia_drm, nvidia
+
+01:00.1 Audio device: NVIDIA Corporation GB202 High Definition Audio Controller (rev a1) (prog-if 00 [HDA compatible])
+	Subsystem: NVIDIA Corporation Device 0000
+	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
+	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+	Latency: 0, Cache Line Size: 64 bytes
+	Interrupts: pin C routed to IRQ 167
+	IOMMU group: 14
+	Region 0: Memory at dc080000 (32-bit, non-prefetchable) [size=16K]
+	Capabilities: <access denied>
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+
+$ rpm -qa
+cuda-cccl-devel-13.2.27-1.fc44.x86_64
+cuda-crt-13.2.51-1.fc44.x86_64
+cuda-cudart-13.2.51-1.fc44.x86_64
+cuda-cudart-devel-13.2.51-1.fc44.x86_64
+cuda-gcc-15-4.fc44.noarch
+cuda-nvcc-13.2.51-1.fc44.x86_64
+cuda-nvml-devel-13.2.51-1.fc44.x86_64
+cuda-profiler-devel-13.2.20-1.fc44.noarch
+exit=0
+nvidia-driver-595.91.07-2.fc44.x86_64
+nvidia-driver-cuda-595.91.07-2.fc44.x86_64
+nvidia-driver-cuda-libs-595.91.07-2.fc44.i686
+nvidia-driver-cuda-libs-595.91.07-2.fc44.x86_64
+nvidia-driver-libs-595.91.07-2.fc44.i686
+nvidia-driver-libs-595.91.07-2.fc44.x86_64
+nvidia-gpu-firmware-20260622-1.fc44.noarch
+nvidia-kmod-common-595.91.07-2.fc44.noarch
+nvidia-libXNVCtrl-595.91.07-2.fc44.x86_64
+nvidia-modprobe-595.91.07-2.fc44.x86_64
+nvidia-persistenced-595.91.07-2.fc44.x86_64
+nvidia-settings-595.91.07-2.fc44.x86_64

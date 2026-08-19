@@ -207,7 +207,7 @@ completion must remain below the configured 200k total sequence ceiling.
 
 ## Result artifacts
 
-- `backend_results_2026-08-18.json`: compact measurements used by this report
+- `results-summary.json`: compact measurements used by this report
 - `scripts/launch/launch_ninfer_5090.sh`: measured NInfer profile
 - `scripts/launch/launch_vllm_5090.sh`: measured vLLM profile
 - `docs/RERUN.md`: complete publication matrix and aggregation workflow

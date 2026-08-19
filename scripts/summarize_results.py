@@ -9,6 +9,7 @@ import json
 import os
 import statistics
 from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -71,14 +72,43 @@ def public_error_summary(error: object) -> str:
     return redact_private_paths(error)
 
 
+def public_model_revisions() -> dict[str, dict[str, str]]:
+    """Return pinned repository IDs and revisions without local snapshot paths."""
+    path = ROOT / "models" / "downloaded_snapshots.json"
+    try:
+        snapshots = json.loads(path.read_text())
+    except (json.JSONDecodeError, OSError):
+        return {}
+    return {
+        name: {
+            "repo_id": str(value.get("repo_id", "")),
+            "revision": str(value.get("revision", "")),
+        }
+        for name, value in snapshots.items()
+        if isinstance(value, dict)
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--prefix", required=True, help="Run-ID prefix shared by this session.")
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "reports")
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        help="Override the default reports/runs/<session> publication directory.",
+    )
+    parser.add_argument(
+        "--status",
+        choices=("auto", "aborted"),
+        default="auto",
+        help="Mark an intentionally incomplete session as aborted.",
+    )
     args = parser.parse_args()
 
+    output_dir = args.output_dir or ROOT / "reports" / "runs" / args.prefix
+
     matched: list[tuple[Path, dict[str, Any]]] = []
-    for path in sorted((ROOT / "raw_results").glob("*.json")):
+    for path in sorted((ROOT / "raw_results").rglob("*.json")):
         try:
             data = json.loads(path.read_text())
         except (json.JSONDecodeError, OSError):
@@ -174,16 +204,28 @@ def main() -> int:
                 }
             )
 
-    args.output_dir.mkdir(parents=True, exist_ok=True)
-    csv_path = args.output_dir / f"{args.prefix}-results.csv"
-    md_path = args.output_dir / f"{args.prefix}-results.md"
+    quality_failures = [name for name, passed, total in quality if passed != total]
+    if args.status == "aborted":
+        status = "aborted"
+    elif failures:
+        status = "failed"
+    elif quality_failures:
+        status = "complete_with_quality_failures"
+    else:
+        status = "complete"
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = output_dir / "results.csv"
+    md_path = output_dir / "results.md"
     with csv_path.open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=FIELDS)
+        writer = csv.DictWriter(handle, fieldnames=FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
     lines = [
         f"# Benchmark results: {args.prefix}",
+        "",
+        f"Status: **{status}**.",
         "",
         "All throughput values are client-observed medians. Prompt counts are the actual",
         "server-reported counts, not requested target sizes.",
@@ -221,9 +263,53 @@ def main() -> int:
         lines.extend(["", "## Recorded failures", ""])
         lines.extend(f"- {failure}" for failure in failures)
     lines.extend(["", "## Raw sources", ""])
-    lines.extend(f"- `{path.name}`" for path, _ in matched)
+    lines.extend(f"- `{path.relative_to(ROOT)}`" for path, _ in matched)
     md_path.write_text("\n".join(lines) + "\n")
-    print(json.dumps({"csv": str(csv_path), "markdown": str(md_path), "rows": len(rows)}))
+
+    ninfer_commit_path = output_dir / "ninfer-commit.txt"
+    ninfer_commit = (
+        ninfer_commit_path.read_text().strip() if ninfer_commit_path.is_file() else None
+    )
+    manifest = {
+        "schema_version": 1,
+        "bench_session": args.prefix,
+        "status": status,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "result_rows": len(rows),
+        "measurement_failures": failures,
+        "quality": [
+            {"configuration": name, "passed": passed, "total": total}
+            for name, passed, total in quality
+        ],
+        "artifacts": sorted(
+            [
+                path.name
+                for path in output_dir.iterdir()
+                if path.is_file() and path.name != "manifest.json"
+            ]
+            + ["manifest.json"]
+        ),
+        "raw_sources": [str(path.relative_to(ROOT)) for path, _ in matched],
+        "model_revisions": public_model_revisions(),
+        "source_revisions": {"ninfer": ninfer_commit} if ninfer_commit else {},
+        "expected_model_hashes": {
+            "ninfer_nvfp4": "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32"
+        },
+    }
+    manifest_path = output_dir / "manifest.json"
+    manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+    (ROOT / "reports" / "LATEST").write_text(args.prefix + "\n")
+    print(
+        json.dumps(
+            {
+                "csv": str(csv_path),
+                "markdown": str(md_path),
+                "manifest": str(manifest_path),
+                "rows": len(rows),
+                "status": status,
+            }
+        )
+    )
     return 1 if failures else 0
 
 

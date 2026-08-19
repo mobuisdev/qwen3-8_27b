@@ -14,6 +14,8 @@ from typing import Any
 import requests
 from transformers import AutoTokenizer
 
+from benchmark_paths import session_directory
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -190,7 +192,7 @@ def main() -> int:
         )
 
     output["finished"] = datetime.now(timezone.utc).isoformat()
-    path = ROOT / "raw_results" / f"{run_id}.json"
+    path = session_directory(ROOT, "raw_results", run_id) / f"{run_id}.json"
     path.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n")
     print(
         json.dumps(
