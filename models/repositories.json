@@ -585,5 +585,449 @@
       }
     ],
     "total_file_bytes": 55586114863
+  },
+  "gittensor_candidate": {
+    "repo_id": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090",
+    "requested_revision": "0cc27958cefbbe231782ec8511de8c4eb5233348",
+    "resolved_revision": "0cc27958cefbbe231782ec8511de8c4eb5233348",
+    "last_modified": "2026-08-19T10:36:46+00:00",
+    "private": false,
+    "gated": false,
+    "pipeline_tag": "image-text-to-text",
+    "library_name": "transformers",
+    "tags": [
+      "transformers",
+      "safetensors",
+      "qwen3_5",
+      "image-text-to-text",
+      "nvfp4",
+      "modelopt",
+      "nvidia",
+      "rtx-5090",
+      "blackwell",
+      "quantization",
+      "qwen3.8",
+      "vllm",
+      "conversational",
+      "base_model:Qwen/Qwen3.8-27B",
+      "base_model:quantized:Qwen/Qwen3.8-27B",
+      "license:apache-2.0",
+      "endpoints_compatible",
+      "8-bit",
+      "region:us"
+    ],
+    "files": [
+      {
+        "name": ".gitattributes",
+        "size_bytes": 1883,
+        "blob_id": "a8844d22b79c290e1bb162ea9880964f874c3a06",
+        "lfs": null
+      },
+      {
+        "name": "LICENSE",
+        "size_bytes": 11544,
+        "blob_id": "f938136e3adacfd92be087f6e113b5d6d97f678f",
+        "lfs": null
+      },
+      {
+        "name": "README.md",
+        "size_bytes": 17407,
+        "blob_id": "f1490a9db2e7b2d3752faddce6bb7ea50b03f79c",
+        "lfs": null
+      },
+      {
+        "name": "README.qwen-upstream.md",
+        "size_bytes": 65012,
+        "blob_id": "bc8aa0e396cd029c21cd773cca21830d0ded28ec",
+        "lfs": null
+      },
+      {
+        "name": "assets/rtx5090-accuracy.png",
+        "size_bytes": 86034,
+        "blob_id": "110a1d31e3d5f491b05cac6c4886cd829888b73f",
+        "lfs": null
+      },
+      {
+        "name": "assets/rtx5090-context.png",
+        "size_bytes": 81913,
+        "blob_id": "0de463dd9f8b9f388d17c9715d587164acafac61",
+        "lfs": null
+      },
+      {
+        "name": "assets/rtx5090-decode.png",
+        "size_bytes": 88744,
+        "blob_id": "b936e620c0183a5de611f7f4573772184b149106",
+        "lfs": {
+          "size": 88744,
+          "sha256": "2ad1c493144c263e5ac33b09f406aa69d453e513b05252d08a04fc57c008ed94",
+          "pointer_size": 130
+        }
+      },
+      {
+        "name": "assets/rtx5090-hero.png",
+        "size_bytes": 123721,
+        "blob_id": "785d061ccfc91a8c4f805c662761ac2b7cf34f7a",
+        "lfs": {
+          "size": 123721,
+          "sha256": "65fdb7d51c26626e3fb9effd8fdafce6046be70e944f182ba15d331c018d44a5",
+          "pointer_size": 131
+        }
+      },
+      {
+        "name": "assets/rtx5090-overview.png",
+        "size_bytes": 152106,
+        "blob_id": "fa362ed3603366be409e53cfe06683633dd88016",
+        "lfs": {
+          "size": 152106,
+          "sha256": "798041c149f0ef5ad6f8d26a002968332b1c4a862120c31da6dc264062ad64c7",
+          "pointer_size": 131
+        }
+      },
+      {
+        "name": "assets/rtx5090-spec.png",
+        "size_bytes": 122487,
+        "blob_id": "1a29087e0c384f8eee4bf998f439e200adfd1ca7",
+        "lfs": {
+          "size": 122487,
+          "sha256": "96d4caee20382e75eeb296e888c758782726e86cad16fc7aa42ec3ded0771722",
+          "pointer_size": 131
+        }
+      },
+      {
+        "name": "assets/rtx5090-speculation.png",
+        "size_bytes": 171631,
+        "blob_id": "ee7b64962fa1a3a1ed7c9f5d7f99dbcd588820a2",
+        "lfs": {
+          "size": 171631,
+          "sha256": "ac404b7bc6aded8bb2f5176b58af2360ef7e2cb31537320db5b449b6cbec6e18",
+          "pointer_size": 131
+        }
+      },
+      {
+        "name": "assets/rtx5090-ttft.png",
+        "size_bytes": 71910,
+        "blob_id": "7204efca331e103d1b879b2895c7f7e2d1361965",
+        "lfs": null
+      },
+      {
+        "name": "chat_template.jinja",
+        "size_bytes": 14221,
+        "blob_id": "170b686aa4bd0297644b8b82062258430cc23f77",
+        "lfs": null
+      },
+      {
+        "name": "config.json",
+        "size_bytes": 13247,
+        "blob_id": "7f4c7881e7ef0190ba37cfbcd9551454e0a21444",
+        "lfs": null
+      },
+      {
+        "name": "crc32.txt",
+        "size_bytes": 129,
+        "blob_id": "0f8f685437819512fb9ede99dfbfad2f4573ed75",
+        "lfs": null
+      },
+      {
+        "name": "generation_config.json",
+        "size_bytes": 213,
+        "blob_id": "d04042de33b454891a0b8fa98e00da677799f30e",
+        "lfs": null
+      },
+      {
+        "name": "hf_quant_config.json",
+        "size_bytes": 9087,
+        "blob_id": "ae1a015d5a337a218bf17f3cb60a1bff6180a030",
+        "lfs": null
+      },
+      {
+        "name": "merges.txt",
+        "size_bytes": 3353259,
+        "blob_id": "a494e019ca1502219fd0128658b979e5f05ae8e8",
+        "lfs": null
+      },
+      {
+        "name": "model-00001-of-00003.safetensors",
+        "size_bytes": 9972777720,
+        "blob_id": "d1d205e8c6a3fd1eba72697b21e3ca32d0c13025",
+        "lfs": {
+          "size": 9972777720,
+          "sha256": "cdd37b0e61eccc8a3d7d08f9d1a4f52856a9d88e4e8b42089bd18a970e3a01ec",
+          "pointer_size": 135
+        }
+      },
+      {
+        "name": "model-00002-of-00003.safetensors",
+        "size_bytes": 8048202912,
+        "blob_id": "d1df554f0f83aa3d1535ede59eae625174e41373",
+        "lfs": {
+          "size": 8048202912,
+          "sha256": "4b547449a2b23c6cd414da0cf65ff9d7e17ad9aa2b119beedcbba14f649eb1dd",
+          "pointer_size": 135
+        }
+      },
+      {
+        "name": "model-00003-of-00003.safetensors",
+        "size_bytes": 744532384,
+        "blob_id": "9e94c000dabfaeab14e1aea0daffe543eed28cb5",
+        "lfs": {
+          "size": 744532384,
+          "sha256": "9ce944d534eabdd493076a3a52c7ebd31f41c135b340a1ea95c5a695e6f1f6b2",
+          "pointer_size": 134
+        }
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "size_bytes": 237649,
+        "blob_id": "ad0c90bcdca6fe69969c0586c1955fc99b91a39e",
+        "lfs": null
+      },
+      {
+        "name": "preprocessor_config.json",
+        "size_bytes": 390,
+        "blob_id": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+        "lfs": null
+      },
+      {
+        "name": "processor_config.json",
+        "size_bytes": 1191,
+        "blob_id": "33818c7f9e991ad735fd240209f4fa73e6c28c50",
+        "lfs": null
+      },
+      {
+        "name": "tokenizer.json",
+        "size_bytes": 12809320,
+        "blob_id": "9328ce9c41e80f6dd7bc2c66d8ae1fc93bf87440",
+        "lfs": {
+          "size": 12809320,
+          "sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+          "pointer_size": 133
+        }
+      },
+      {
+        "name": "tokenizer_config.json",
+        "size_bytes": 1150,
+        "blob_id": "c240896a366de8a9c55db520bf005d87add55b5b",
+        "lfs": null
+      },
+      {
+        "name": "video_preprocessor_config.json",
+        "size_bytes": 385,
+        "blob_id": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+        "lfs": null
+      },
+      {
+        "name": "vocab.json",
+        "size_bytes": 6722759,
+        "blob_id": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+        "lfs": null
+      }
+    ],
+    "total_file_bytes": 18789670408
+  },
+  "gittensor_dspark_candidate": {
+    "repo_id": "gittensor-model-hub/Qwen3.8-27B-DSpark-NVFP4",
+    "requested_revision": "eba1ac5a66c74902eaa95a4000a7c5eda96d8e95",
+    "resolved_revision": "eba1ac5a66c74902eaa95a4000a7c5eda96d8e95",
+    "last_modified": "2026-08-19T11:54:02+00:00",
+    "private": false,
+    "gated": false,
+    "pipeline_tag": null,
+    "library_name": "transformers",
+    "tags": [
+      "transformers",
+      "safetensors",
+      "qwen3",
+      "speculative-decoding",
+      "dspark",
+      "draft-model",
+      "nvfp4",
+      "modelopt",
+      "quantization",
+      "sglang",
+      "rtx-5090",
+      "qwen3.8",
+      "base_model:gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090-DSpark",
+      "base_model:quantized:gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090-DSpark",
+      "license:apache-2.0",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "8-bit",
+      "region:us"
+    ],
+    "files": [
+      {
+        "name": ".gitattributes",
+        "size_bytes": 1519,
+        "blob_id": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "lfs": null
+      },
+      {
+        "name": "README.md",
+        "size_bytes": 10793,
+        "blob_id": "026a874dc379fb481cefeff43a5fcb162817faef",
+        "lfs": null
+      },
+      {
+        "name": "config.json",
+        "size_bytes": 2828,
+        "blob_id": "345d1d33a32e1e1dbbb0497fab97ebb5182e8039",
+        "lfs": null
+      },
+      {
+        "name": "hf_quant_config.json",
+        "size_bytes": 937,
+        "blob_id": "cff7b1f367a4df449643ac6ecd5ab85c4082c498",
+        "lfs": null
+      },
+      {
+        "name": "model.safetensors",
+        "size_bytes": 1399670058,
+        "blob_id": "de1554908b6bdd50a86e63ef72474b50de31440c",
+        "lfs": {
+          "size": 1399670058,
+          "sha256": "212fd1b8b5477536ab9e726a94d8565a2246467d044de772f6648df17d5dda05",
+          "pointer_size": 135
+        }
+      }
+    ],
+    "total_file_bytes": 1399686135
+  },
+  "ninfer_nvfp4_current_metadata": {
+    "repo_id": "neroued/Qwen3.8-27B-nvfp4-NInfer",
+    "requested_revision": "204e3d92c30d9d05f3300d2f52e443ad1edf6ddf",
+    "resolved_revision": "204e3d92c30d9d05f3300d2f52e443ad1edf6ddf",
+    "last_modified": "2026-08-19T02:20:18+00:00",
+    "private": false,
+    "gated": false,
+    "pipeline_tag": "image-text-to-text",
+    "library_name": "ninfer",
+    "tags": [
+      "ninfer",
+      "qwen3.8",
+      "nvfp4",
+      "fp8",
+      "w4a4",
+      "blackwell",
+      "multimodal",
+      "conversational",
+      "cuda",
+      "rtx-5090",
+      "image-text-to-text",
+      "base_model:Qwen/Qwen3.8-27B",
+      "base_model:quantized:Qwen/Qwen3.8-27B",
+      "license:apache-2.0",
+      "model-index",
+      "region:us"
+    ],
+    "files": [
+      {
+        "name": ".gitattributes",
+        "size_bytes": 1580,
+        "blob_id": "7e513d6891df990524f4828daa214d0f04aa5368",
+        "lfs": null
+      },
+      {
+        "name": "LICENSE",
+        "size_bytes": 11357,
+        "blob_id": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "lfs": null
+      },
+      {
+        "name": "README.md",
+        "size_bytes": 13314,
+        "blob_id": "2ad841f3ae6b61c62f5a0fe082e2d4f8f70c2949",
+        "lfs": null
+      },
+      {
+        "name": "SHA256SUMS",
+        "size_bytes": 91,
+        "blob_id": "9dd40fc202fdb21a8520c21c3a5c544153e1499d",
+        "lfs": null
+      },
+      {
+        "name": "artifact-manifest.json",
+        "size_bytes": 2069,
+        "blob_id": "32d1d9fd22f5895f4a8eef9dc377ba8d4daeceaf",
+        "lfs": null
+      },
+      {
+        "name": "qwen3_8_27b_nvfp4.ninfer",
+        "size_bytes": 21492695040,
+        "blob_id": "8237af11976d9c58b52f1069afbc0b08cabba45f",
+        "lfs": {
+          "size": 21492695040,
+          "sha256": "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32",
+          "pointer_size": 136
+        }
+      }
+    ],
+    "total_file_bytes": 21492723451
+  },
+  "ninfer_groupwise_candidate": {
+    "repo_id": "neroued/Qwen3.8-27B-NInfer",
+    "requested_revision": "18dfc887423fa5aabf3cb56fac41490e462b3fab",
+    "resolved_revision": "18dfc887423fa5aabf3cb56fac41490e462b3fab",
+    "last_modified": "2026-08-19T18:36:53+00:00",
+    "private": false,
+    "gated": false,
+    "pipeline_tag": "image-text-to-text",
+    "library_name": "ninfer",
+    "tags": [
+      "ninfer",
+      "qwen3.8",
+      "multimodal",
+      "conversational",
+      "cuda",
+      "rtx-5090",
+      "image-text-to-text",
+      "base_model:Qwen/Qwen3.8-27B",
+      "base_model:quantized:Qwen/Qwen3.8-27B",
+      "license:apache-2.0",
+      "model-index",
+      "region:us"
+    ],
+    "files": [
+      {
+        "name": ".gitattributes",
+        "size_bytes": 1564,
+        "blob_id": "957149a5aaa2fa42683c0215e1554a2eeb6573d9",
+        "lfs": null
+      },
+      {
+        "name": "LICENSE",
+        "size_bytes": 11357,
+        "blob_id": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "lfs": null
+      },
+      {
+        "name": "README.md",
+        "size_bytes": 8591,
+        "blob_id": "ba299fa0278d0cc3afefd18f03585c112df2c5ee",
+        "lfs": null
+      },
+      {
+        "name": "SHA256SUMS",
+        "size_bytes": 85,
+        "blob_id": "161615b92cd13ae88ff47c439203a6034a9a3593",
+        "lfs": null
+      },
+      {
+        "name": "artifact-manifest.json",
+        "size_bytes": 1720,
+        "blob_id": "390cc9cc01fd8f0d6a1d20da9d3d6635b8e41f8a",
+        "lfs": null
+      },
+      {
+        "name": "qwen3_8_27b.ninfer",
+        "size_bytes": 18210531328,
+        "blob_id": "ee28c4b929bb719358c814e8f8b051479e224717",
+        "lfs": {
+          "size": 18210531328,
+          "sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e",
+          "pointer_size": 136
+        }
+      }
+    ],
+    "total_file_bytes": 18210554645
   }
 }

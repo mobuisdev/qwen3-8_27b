@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-VENV="$ROOT/.venv-vllm-0.27.1"
+VENV="${QWEN_VLLM_VENV:-$ROOT/.venv-vllm-0.27.1}"
 CUDA_HOME="$VENV/lib/python3.12/site-packages/nvidia/cu13"
 MODEL_DEFAULT="$ROOT/hf-home/hub/models--unsloth--Qwen3.8-27B-NVFP4/snapshots/7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108"
 

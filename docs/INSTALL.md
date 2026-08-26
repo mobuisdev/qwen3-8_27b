@@ -141,6 +141,26 @@ retain the full rationale.
 After reconstructing all three backends, follow [RERUN.md](RERUN.md) for the
 fixed publication matrix.
 
+## 8. Optional upstream candidate matrix
+
+Do not update the publication environments in place. The candidate setup uses
+separate source directories, virtual environments, model revisions, and cache
+paths:
+
+```bash
+./scripts/setup/setup_candidate_models_5090.sh
+./scripts/setup/setup_sglang_candidate_5090.sh
+# Optional source-build and NInfer comparisons:
+./scripts/setup/setup_vllm_candidate_5090.sh
+./scripts/setup/setup_candidate_models_5090.sh --with-ninfer-groupwise
+```
+
+See [CANDIDATES.md](CANDIDATES.md) for exact revisions, launch commands,
+context limits, benchmark labels, and promotion criteria. These commands add
+roughly 20.2 GiB for the Gittensor target and drafter, 17.0 GiB if the optional
+NInfer artifact is selected, and separate source environments for engines that
+are built.
+
 ## Regenerable disk usage
 
 These paths can be removed when reclaiming space, provided no server is

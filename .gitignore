@@ -28,6 +28,7 @@ core.*
 hf-home/
 ninfer-models/
 sglang-cache/
+sglang-cache-candidate/
 vllm-cache/
 flashinfer-workspace/
 cuda-header-shim/

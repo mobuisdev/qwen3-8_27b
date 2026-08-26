@@ -36,6 +36,12 @@ def main() -> int:
     parser.add_argument("--model", default="qwen38-ninfer-nvfp4")
     parser.add_argument("--model-path", default=str(ROOT / "models" / "qwen_base"))
     parser.add_argument("--needle-context", type=int, default=100000)
+    parser.add_argument(
+        "--needle-max-tokens",
+        type=int,
+        default=64,
+        help="Generation budget for each needle case (default: 64).",
+    )
     parser.add_argument("--label", default="openai_quality")
     args = parser.parse_args()
 
@@ -164,7 +170,7 @@ def main() -> int:
                 "model": args.model,
                 "messages": [{"role": "user", "content": content}],
                 "temperature": 0,
-                "max_tokens": 64,
+                "max_tokens": args.needle_max_tokens,
             },
         )
         message = result["response"]["choices"][0]["message"]

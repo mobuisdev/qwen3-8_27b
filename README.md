@@ -11,6 +11,12 @@ The current recommendation is **NInfer + Qwen3.8-27B NVFP4 + INT8 KV + MTP3**.
 It measured **155.42 tok/s median at an actual 190,003-token prompt**. Start with
 [REPORT.md](REPORT.md) for the comparison and caveats.
 
+An isolated [2026-08-20 candidate matrix](docs/CANDIDATES.md) tracks the newer
+Gittensor LMHead4 checkpoint, its matching DSpark drafter, merged SGLang
+Qwen3.8 support, a dated vLLM source candidate, and NInfer's groupwise-int
+artifact. These candidates do not replace the published pins or recommendation
+until they pass the same local long-context and quality checks.
+
 ## Use the current installation
 
 ```bash

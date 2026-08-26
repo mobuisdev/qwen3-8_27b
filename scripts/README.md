@@ -44,6 +44,20 @@ normalized rows in its ignored raw result by default; pass
 `--append-canonical-results` only when intentionally extending the tracked
 SGLang CSV/JSON datasets.
 
+`check_upstream_updates.py` is read-only and compares the model, engine,
+DeepSeek Harness, and source revisions in `models/upstream_pins.json` with
+official Hugging Face and GitHub heads. It prints expected movement of
+historical publication pins as well as unexpected movement of candidates:
+
+```bash
+python3 scripts/check_upstream_updates.py
+python3 scripts/check_upstream_updates.py --json
+```
+
+Candidate provisioning and launchers are documented in
+[`../docs/CANDIDATES.md`](../docs/CANDIDATES.md). They use separate engine
+environments and do not mutate the publication matrix.
+
 ## Benchmark another machine or server
 
 The benchmark client works with any OpenAI-compatible chat/completions server;

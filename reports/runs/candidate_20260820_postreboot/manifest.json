@@ -1,0 +1,57 @@
+{
+  "artifacts": [
+    "manifest.json",
+    "results.csv",
+    "results.md"
+  ],
+  "bench_session": "candidate_20260820_postreboot",
+  "expected_model_hashes": {},
+  "generated_at": "2026-08-20T11:25:05.749206+00:00",
+  "measurement_failures": [],
+  "model_revisions": {
+    "gittensor_dspark_candidate": {
+      "repo_id": "gittensor-model-hub/Qwen3.8-27B-DSpark-NVFP4",
+      "revision": "eba1ac5a66c74902eaa95a4000a7c5eda96d8e95"
+    },
+    "gittensor_lmhead4_candidate": {
+      "repo_id": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090",
+      "revision": "0cc27958cefbbe231782ec8511de8c4eb5233348"
+    }
+  },
+  "quality": [
+    {
+      "configuration": "candidate_20260820_postreboot_sglang_gittensor_dspark_quality_128diag",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "configuration": "candidate_20260820_postreboot_sglang_gittensor_dspark_quality",
+      "passed": 6,
+      "total": 7
+    },
+    {
+      "configuration": "candidate_20260820_postreboot_sglang_gittensor_lmhead4_quality_128diag",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "configuration": "candidate_20260820_postreboot_sglang_gittensor_lmhead4_quality",
+      "passed": 5,
+      "total": 7
+    }
+  ],
+  "raw_sources": [
+    "raw_results/candidate_20260820_postreboot_sglang_gittensor_dspark_20260820T131402_e89be5f7/candidate_20260820_postreboot_sglang_gittensor_dspark_20260820T131402_e89be5f7.json",
+    "raw_results/candidate_20260820_postreboot_sglang_gittensor_dspark_quality_128diag_20260820T131847_169d3151/candidate_20260820_postreboot_sglang_gittensor_dspark_quality_128diag_20260820T131847_169d3151.json",
+    "raw_results/candidate_20260820_postreboot_sglang_gittensor_dspark_quality_20260820T131653_b019d32a/candidate_20260820_postreboot_sglang_gittensor_dspark_quality_20260820T131653_b019d32a.json",
+    "raw_results/candidate_20260820_postreboot_sglang_gittensor_lmhead4_20260820T130052_854364c5/candidate_20260820_postreboot_sglang_gittensor_lmhead4_20260820T130052_854364c5.json",
+    "raw_results/candidate_20260820_postreboot_sglang_gittensor_lmhead4_quality_128diag_20260820T132104_26bf8482/candidate_20260820_postreboot_sglang_gittensor_lmhead4_quality_128diag_20260820T132104_26bf8482.json",
+    "raw_results/candidate_20260820_postreboot_sglang_gittensor_lmhead4_quality_20260820T130901_4e185631/candidate_20260820_postreboot_sglang_gittensor_lmhead4_quality_20260820T130901_4e185631.json"
+  ],
+  "result_rows": 7,
+  "schema_version": 1,
+  "source_revisions": {
+    "sglang": "8a1e6e4e461044246739b5a1ad579c8acc556a2d"
+  },
+  "status": "complete_with_quality_failures"
+}

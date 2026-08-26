@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail early when a publication benchmark host is not in a safe state."""
+"""Fail early when a benchmark host is not in a safe state."""
 
 from __future__ import annotations
 
@@ -13,6 +13,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 GIB = 1024**3
 NINFER_SHA256 = "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32"
+NINFER_GROUPWISE_SHA256 = (
+    "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e"
+)
 
 
 def meminfo() -> dict[str, int]:
@@ -61,7 +64,12 @@ def main() -> int:
     parser.add_argument(
         "--verify-model-hash",
         action="store_true",
-        help="Read and hash the 20 GiB NInfer artifact.",
+        help="Read and hash the selected NInfer artifact.",
+    )
+    parser.add_argument(
+        "--candidate",
+        action="store_true",
+        help="Check the isolated candidate matrix instead of publication pins.",
     )
     args = parser.parse_args()
 
@@ -108,27 +116,72 @@ def main() -> int:
     gittensor = ROOT / "hf-home/hub/models--gittensor-model-hub--Qwen3.8-27B-NVFP4-RTX5090/snapshots/ec8ad26b9e3b33c7d05c0e5743b60f37f5139005"
     radixark = ROOT / "hf-home/hub/models--RadixArk--Qwen3.8-27B-NVFP4/snapshots/554ebba9b5f1b79dc11246341960360e6ef05ef4"
     ninfer_model = ROOT / "ninfer-models/qwen3_8_27b_nvfp4.ninfer"
+    candidate_gittensor = (
+        ROOT
+        / "hf-home/hub/models--gittensor-model-hub--Qwen3.8-27B-NVFP4-RTX5090"
+        / "snapshots/0cc27958cefbbe231782ec8511de8c4eb5233348"
+    )
+    candidate_dspark = (
+        ROOT
+        / "hf-home/hub/models--gittensor-model-hub--Qwen3.8-27B-DSpark-NVFP4"
+        / "snapshots/eba1ac5a66c74902eaa95a4000a7c5eda96d8e95"
+    )
+    candidate_ninfer = ROOT / "ninfer-models/groupwise/qwen3_8_27b.ninfer"
 
     if args.backend in ("all", "ninfer"):
-        require(ROOT / "vendor/ninfer/build/apps/ninfer-serve", "NInfer binary", errors)
-        require(ninfer_model, "NInfer artifact", errors)
-        if args.verify_model_hash and ninfer_model.is_file():
-            actual = sha256(ninfer_model)
-            if actual != NINFER_SHA256:
-                errors.append(f"NInfer artifact SHA-256 mismatch: {actual}")
+        selected_ninfer = candidate_ninfer if args.candidate else ninfer_model
+        expected_ninfer_hash = (
+            NINFER_GROUPWISE_SHA256 if args.candidate else NINFER_SHA256
+        )
+        ninfer_is_optional = args.candidate and args.backend == "all"
+        if ninfer_is_optional and not selected_ninfer.exists():
+            warnings.append(
+                "Optional NInfer groupwise candidate is not installed; "
+                "use --backend ninfer to require it."
+            )
+        else:
+            require(
+                ROOT / "vendor/ninfer/build/apps/ninfer-serve",
+                "NInfer binary",
+                errors,
+            )
+            require(selected_ninfer, "NInfer artifact", errors)
+            if args.verify_model_hash and selected_ninfer.is_file():
+                actual = sha256(selected_ninfer)
+                if actual != expected_ninfer_hash:
+                    errors.append(f"NInfer artifact SHA-256 mismatch: {actual}")
     if args.backend in ("all", "vllm"):
-        require(ROOT / ".venv-vllm-0.27.1/bin/vllm", "vLLM environment", errors)
-        require(unsloth, "Unsloth snapshot", errors)
-        require(gittensor, "Gittensor snapshot", errors)
+        if args.candidate:
+            require(candidate_gittensor, "candidate Gittensor snapshot", errors)
+            if not (
+                (ROOT / ".venv-vllm-0.27.1/bin/vllm").exists()
+                or (ROOT / ".venv-vllm-qwen38-candidate/bin/vllm").exists()
+            ):
+                errors.append("Missing both stable and candidate vLLM environments")
+        else:
+            require(ROOT / ".venv-vllm-0.27.1/bin/vllm", "vLLM environment", errors)
+            require(unsloth, "Unsloth snapshot", errors)
+            require(gittensor, "Gittensor snapshot", errors)
     if args.backend in ("all", "sglang"):
-        require(ROOT / ".venv/bin/sglang", "SGLang environment", errors)
-        require(radixark, "RadixArk snapshot", errors)
+        if args.candidate:
+            require(
+                ROOT / ".venv-sglang-qwen38-candidate/bin/sglang",
+                "candidate SGLang environment",
+                errors,
+            )
+            require(candidate_gittensor, "candidate Gittensor snapshot", errors)
+            require(candidate_dspark, "candidate DSpark snapshot", errors)
+        else:
+            require(ROOT / ".venv/bin/sglang", "SGLang environment", errors)
+            require(radixark, "RadixArk snapshot", errors)
 
     client_python = next(
         (
             path
             for path in (
                 ROOT / ".venv-tools/bin/python",
+                ROOT / ".venv-sglang-qwen38-candidate/bin/python",
+                ROOT / ".venv-vllm-qwen38-candidate/bin/python",
                 ROOT / ".venv-vllm-0.27.1/bin/python",
                 ROOT / ".venv/bin/python",
             )

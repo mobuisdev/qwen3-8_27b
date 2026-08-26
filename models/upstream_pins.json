@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-26",
+  "models": {
+    "qwen_base_publication": {
+      "repo_id": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "track": "publication"
+    },
+    "radixark_publication": {
+      "repo_id": "RadixArk/Qwen3.8-27B-NVFP4",
+      "revision": "554ebba9b5f1b79dc11246341960360e6ef05ef4",
+      "track": "publication"
+    },
+    "unsloth_publication": {
+      "repo_id": "unsloth/Qwen3.8-27B-NVFP4",
+      "revision": "7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108",
+      "track": "publication"
+    },
+    "gittensor_publication": {
+      "repo_id": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090",
+      "revision": "ec8ad26b9e3b33c7d05c0e5743b60f37f5139005",
+      "track": "publication"
+    },
+    "ninfer_nvfp4_publication": {
+      "repo_id": "neroued/Qwen3.8-27B-nvfp4-NInfer",
+      "revision": "d6d0b3b61a38262e57217e64e7f44cf4ce98bda1",
+      "track": "publication",
+      "artifact_sha256": "bb3360522a06e136e0367f5703414d26272b7285c8a6ab6194135c17dbd81b32"
+    },
+    "gittensor_lmhead4_candidate": {
+      "repo_id": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090",
+      "revision": "0cc27958cefbbe231782ec8511de8c4eb5233348",
+      "track": "candidate"
+    },
+    "gittensor_dspark_candidate": {
+      "repo_id": "gittensor-model-hub/Qwen3.8-27B-DSpark-NVFP4",
+      "revision": "eba1ac5a66c74902eaa95a4000a7c5eda96d8e95",
+      "track": "candidate"
+    },
+    "ninfer_groupwise_candidate": {
+      "repo_id": "neroued/Qwen3.8-27B-NInfer",
+      "revision": "18dfc887423fa5aabf3cb56fac41490e462b3fab",
+      "track": "candidate",
+      "artifact_sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e"
+    }
+  },
+  "releases": {
+    "sglang": {
+      "repo": "sgl-project/sglang",
+      "tag": "v0.5.17"
+    },
+    "vllm": {
+      "repo": "vllm-project/vllm",
+      "tag": "v0.27.1"
+    },
+    "flashinfer": {
+      "repo": "flashinfer-ai/flashinfer",
+      "tag": "v0.6.17"
+    },
+    "pytorch": {
+      "repo": "pytorch/pytorch",
+      "tag": "v2.13.0"
+    },
+    "transformers": {
+      "repo": "huggingface/transformers",
+      "tag": "v5.15.0"
+    }
+  },
+  "sources": {
+    "ninfer_publication": {
+      "repo": "Neroued/ninfer",
+      "branch": "master",
+      "revision": "b2b96bae4dd88f95b9ea8126d68fae3b88caa374",
+      "track": "publication"
+    },
+    "sglang_qwen38_candidate": {
+      "repo": "sgl-project/sglang",
+      "branch": "main",
+      "revision": "8a1e6e4e461044246739b5a1ad579c8acc556a2d",
+      "track": "candidate"
+    },
+    "vllm_qwen38_candidate": {
+      "repo": "vllm-project/vllm",
+      "branch": "main",
+      "revision": "1eab6fef01b78ec4eab6b7156bbf5f120e48d381",
+      "track": "candidate"
+    },
+    "deepseek_harness": {
+      "repo": "deepseek-ai/deepseek-harness",
+      "branch": "master",
+      "revision": "b150a551b8d465e31e418e1b2eaf5e79bbb7d28e",
+      "track": "deployment"
+    }
+  }
+}

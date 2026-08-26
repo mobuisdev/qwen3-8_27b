@@ -1,0 +1,8 @@
+configuration,model,actual_prompt_tokens,samples,median_output_tokens,median_ttft_s,median_decode_tps,min_decode_tps,max_decode_tps,peak_vram_gib,minimum_host_available_gib
+candidate_20260820_postreboot_sglang_gittensor_dspark,qwen38-sglang-gittensor-dspark,1037,3,768,0.124,119.87,113.71,131.71,28.87,52.12
+candidate_20260820_postreboot_sglang_gittensor_dspark,qwen38-sglang-gittensor-dspark,31459,3,768,3.709,111.41,102.27,129.91,28.87,52.17
+candidate_20260820_postreboot_sglang_gittensor_dspark,qwen38-sglang-gittensor-dspark,95889,3,768,21.971,100.14,92.92,101.97,28.78,52.17
+candidate_20260820_postreboot_sglang_gittensor_lmhead4,qwen38-sglang-gittensor-lmhead4,1037,3,768,0.397,60.72,60.2,61.2,29.96,52.9
+candidate_20260820_postreboot_sglang_gittensor_lmhead4,qwen38-sglang-gittensor-lmhead4,31459,3,768,3.717,58.53,58.46,58.54,29.85,53.07
+candidate_20260820_postreboot_sglang_gittensor_lmhead4,qwen38-sglang-gittensor-lmhead4,95889,3,768,22.79,52.52,51.89,52.79,30.23,52.13
+candidate_20260820_postreboot_sglang_gittensor_lmhead4,qwen38-sglang-gittensor-lmhead4,182139,3,768,72.773,47.23,46.31,49.92,30.02,52.06

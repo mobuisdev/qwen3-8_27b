@@ -10,18 +10,41 @@ import shutil
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MODELS = {
-    "radixark": (
-        "RadixArk/Qwen3.8-27B-NVFP4",
-        "554ebba9b5f1b79dc11246341960360e6ef05ef4",
-    ),
-    "unsloth": (
-        "unsloth/Qwen3.8-27B-NVFP4",
-        "7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108",
-    ),
-    "qwen_base": (
-        "Qwen/Qwen3.8-27B",
-        "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
-    ),
+    "radixark": {
+        "repo_id": "RadixArk/Qwen3.8-27B-NVFP4",
+        "revision": "554ebba9b5f1b79dc11246341960360e6ef05ef4",
+        "copy_snapshot": True,
+    },
+    "unsloth": {
+        "repo_id": "unsloth/Qwen3.8-27B-NVFP4",
+        "revision": "7d6f8d4d72f56b92b3cdbf22f156b90e1bab0108",
+        "copy_snapshot": True,
+    },
+    "qwen_base": {
+        "repo_id": "Qwen/Qwen3.8-27B",
+        "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+        "copy_snapshot": True,
+    },
+    "gittensor_candidate": {
+        "repo_id": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090",
+        "revision": "0cc27958cefbbe231782ec8511de8c4eb5233348",
+        "copy_snapshot": False,
+    },
+    "gittensor_dspark_candidate": {
+        "repo_id": "gittensor-model-hub/Qwen3.8-27B-DSpark-NVFP4",
+        "revision": "eba1ac5a66c74902eaa95a4000a7c5eda96d8e95",
+        "copy_snapshot": False,
+    },
+    "ninfer_nvfp4_current_metadata": {
+        "repo_id": "neroued/Qwen3.8-27B-nvfp4-NInfer",
+        "revision": "204e3d92c30d9d05f3300d2f52e443ad1edf6ddf",
+        "copy_snapshot": False,
+    },
+    "ninfer_groupwise_candidate": {
+        "repo_id": "neroued/Qwen3.8-27B-NInfer",
+        "revision": "18dfc887423fa5aabf3cb56fac41490e462b3fab",
+        "copy_snapshot": False,
+    },
 }
 ALLOW = [
     "*.json",
@@ -53,20 +76,23 @@ def main(argv: list[str] | None = None) -> int:
 
     api = HfApi()
     inventory: dict[str, object] = {}
-    for key, (repo_id, revision) in MODELS.items():
+    for key, spec in MODELS.items():
+        repo_id = spec["repo_id"]
+        revision = spec["revision"]
         info = api.model_info(repo_id, revision=revision, files_metadata=True)
-        snapshot = pathlib.Path(
-            snapshot_download(
-                repo_id,
-                revision=revision,
-                allow_patterns=ALLOW,
+        if spec["copy_snapshot"]:
+            snapshot = pathlib.Path(
+                snapshot_download(
+                    repo_id,
+                    revision=revision,
+                    allow_patterns=ALLOW,
+                )
             )
-        )
-        target = ROOT / "models" / key
-        target.mkdir(parents=True, exist_ok=True)
-        for source in snapshot.iterdir():
-            if source.is_file():
-                shutil.copy2(source, target / source.name)
+            target = ROOT / "models" / key
+            target.mkdir(parents=True, exist_ok=True)
+            for source in snapshot.iterdir():
+                if source.is_file():
+                    shutil.copy2(source, target / source.name)
         files = [
             {
                 "name": sibling.rfilename,
